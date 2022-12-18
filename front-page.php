@@ -18,37 +18,64 @@ get_header();
 
 ?>
 
-<section id="hero" style="background-color: #080808">
+
+<section id="hero" style="background-color: <?php echo get_theme_mod('hero-bg-color', '#0e0e0e'); ?>; color: <?php echo get_theme_mod('hero-text-color', '#ffffff'); ?> ">
     <div class="container py-5" style="height: 100vh">
         <div class="row h-100 d-flex align-items-center">
             <div class="col">
                 <h1 class="display-1" style="font-weight: bolder">
-                    Create an awesome design portfolio
+                   <?php echo get_theme_mod('hero-heading-text',' Modern Me Theme '); ?>
                 </h1>
-                <div style="border: 5px solid #fff; width: 20%"></div>
+                <div style="border: 5px solid <?php echo get_theme_mod('hero-text-color','#ffffff' ); ?>; width: 20%"></div>
                 <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum,
-                    magnam.
+                    <?php echo get_theme_mod('hero-sub-text', ' Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum,magnam '); ?>
                 </p>
-                <button class="btn btn-lg btn-secondary">READ MORE</button>
+                <a href="<?php echo get_theme_mod('hero-cta-link'); ?>"><button class="btn btn-lg" style="background-color: <?php echo get_theme_mod('hero-cta-color', '#ea004e'); ?>"><?php echo get_theme_mod('hero-cta-text'); ?></button></a>
             </div>
         </div>
     </div>
 </section>
 
 <section id="work">
-    <div class="container" style="min-height: 100vh">
-        <div class="row">
-            <div class="col-md-6">
-                <p>THIS WILL BE CUSTOM POST TYPES</p>
+    <div class="container" style="height: 100vh">
+        <div class="row d-flex align-items-center h-100 justify-items-center">
+
+            <?php 
+            
+                $args = array(
+                    'post_type' => 'projects',
+                    'post_status' => 'publish',
+                    'posts_per_page' => 4,
+                    'orderby' => 'title',
+                    'order' => 'ASC',
+                );
+
+                $loop = new WP_Query( $args );
+                while ( $loop->have_posts() ) : $loop->the_post();
+
+                $attch_id = get_post_thumbnail_id($post->id);
+                $url = wp_get_attachment_image_src($attch_id, 'full');
+                $image = get_field('project_image');
+            ?>
+            <div class="col-md-6 mx-auto">
+                <div class="project-box pb-5 mt-2 mb-5" style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?php echo $image['url'] ?>);">
+                    <div class="project-info">
+                        <h3>The Title</h3>
+                        <div class="div">
+                            <button>Check It Out</button>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <?php endwhile; ?>
         </div>
     </div>
 </section>
 
-<section id="about" class="py-5">
-    <div class="container" style="min-height: 50vh">
-        <div class="row d-flex align-items-center">
+<section id="about" style="height: 100vh" class="py-5">
+    <div class="container" >
+        <div class="row d-flex align-content-center h-100">
             <div class="col-md-6">
                 <img class="img-fluid" src="./bit.png" alt="" />
             </div>
