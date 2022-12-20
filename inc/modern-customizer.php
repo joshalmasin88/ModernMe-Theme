@@ -10,9 +10,10 @@ function mmwp_customize_register( $wp_customize ) {
         'description' => 'This is the hero settings',
     ));
 
-    // Require Customizer Sections
-    require get_stylesheet_directory(  ) .  '/inc/customizer-sections/hero-section.php';
-
+    $wp_customize->add_section('custom-projects', array(
+        'title' => 'Projects Section',
+        'description' => 'This is the projects settings',
+    ));
 
     $wp_customize->add_section('about', array(
         'title' => 'About Section',
@@ -29,6 +30,11 @@ function mmwp_customize_register( $wp_customize ) {
         'description' => 'This is the middle banner settings',
     ));
 
+    // Require Customizer Sections
+    require get_stylesheet_directory(  ) .  '/inc/customizer-sections/hero-section.php';
+    require get_stylesheet_directory(  ) .  '/inc/customizer-sections/projects-section.php';
+    require get_stylesheet_directory(  ) .  '/inc/customizer-sections/about-section.php';
+    require get_stylesheet_directory(  ) .  '/inc/customizer-sections/midbanner-section.php';
 
 
 }

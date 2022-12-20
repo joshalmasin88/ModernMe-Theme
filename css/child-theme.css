@@ -14969,24 +14969,6 @@ figure.woocommerce-product-gallery__wrapper {
   color: #fff;
 }
 
-#work {
-  background-color: #0e0e0e;
-}
-#work .project-box {
-  background-position: center;
-  background-size: cover;
-  height: 350px;
-  min-width: 100%;
-  border-radius: 25px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-direction: column;
-}
-#work .project-box .project-info {
-  color: #fff;
-}
-
 @media (max-width: 768px) {
   #work .project-box {
     height: 150px !important;
